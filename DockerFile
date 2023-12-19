@@ -1,0 +1,18 @@
+# Используем базовый образ Python
+FROM python:3.9
+
+# Устанавливаем переменную среды PYTHONUNBUFFERED в значение 1
+ENV PYTHONUNBUFFERED 1
+
+# Установка зависимостей проекта
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Копирование кода проекта внутрь контейнера
+COPY . /app
+
+# Указываем рабочую директорию для контейнера
+WORKDIR /app
+
+# Запуск сервера FastAPI при старте контейнера
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7500"]
