@@ -1,0 +1,14 @@
+Users:
+    UserID
+    Username
+    Password
+
+Products:
+    ProductID
+    Productname
+    Price
+
+UserCart:
+    CartId
+    UserID
+    ProductID
