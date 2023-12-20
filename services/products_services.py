@@ -10,3 +10,11 @@ def create_product(db: Session, productname: str, price: str):
     db.commit()
     db.refresh(db_product)
     return db_product
+
+def get_product_by_id(db: Session, product_id: int):
+    return db.query(Product).filter(Product.ProductID == product_id).first()
+
+def delete_product(db: Session, db_product: Product):
+    db.delete(db_product)
+    db.commit()
+    return db_product

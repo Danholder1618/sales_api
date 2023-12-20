@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, EmailStr
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -9,3 +9,4 @@ class User(Base):
     UserID = Column(Integer, primary_key=True, index=True)
     Username = Column(String, index=True)
     Password = Column(String)
+    Email = Column(String)

@@ -5,8 +5,8 @@ from security import hash_password
 def get_user_by_Username(db: Session, Username: str):
     return db.query(User).filter(User.Username == Username).first()
 
-def create_user(db: Session, username: str, password: str):
-    db_user = User(Username=username, Password=password)
+def create_user(db: Session, username: str, password: str, email: str):
+    db_user = User(Username=username, Password=password, Email=email)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

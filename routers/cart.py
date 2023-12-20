@@ -18,7 +18,7 @@ def add_to_user_cart(
     ):
     # Проверка на существование товара
     if not db.query(Product).filter(Product.ProductID == cart_item.ProductID).first():
-        raise ValueError("Товар с указанным ProductID не найден на полке продаж.")
+        raise ValueError("Product with such ProductID is not found")
 
     return add_to_cart(db, cart_item, current_user)
 

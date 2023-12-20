@@ -1,5 +1,6 @@
 Users:
     UserID
+    Email
     Username
     Password
 
@@ -12,3 +13,4 @@ UserCart:
     CartId
     UserID
     ProductID
+    Quantity
