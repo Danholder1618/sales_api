@@ -1,7 +1,7 @@
 from fastapi import Depends, HTTPException, status
-from jose import JWTError, jwt
-from services import user_service
-from database import get_db
+from jose import JWTError, jwt 
+from services import users_service
+from database.db import get_db
 from models.user import User
 from main import oauth2_scheme
 from sqlalchemy.orm import Session
@@ -23,7 +23,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     except JWTError:
         raise credentials_exception
 
-    db_user = user_service.get_user_by_username(db, username)
+    db_user = users_service.get_user_by_username(db, username)
     if db_user is None:
         raise credentials_exception
     return db_user
