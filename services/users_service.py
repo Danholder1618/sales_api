@@ -10,7 +10,7 @@ def get_password_hash(password: str) -> str:
 def verify_user_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
-def get_user_by_Username(db: Session, Username: str):
+def get_user_by_username(db: Session, Username: str):
     return db.query(User).filter(User.Username == Username).first()
 
 def create_user(db: Session, username: str, password: str, email: str):
