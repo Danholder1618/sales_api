@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.post("/users/create_new_user", response_model=User, status_code=status.HTTP_201_CREATED)
 def create_new_user(user: User, db: Session = Depends(get_db)):
-    db_user = get_user_by_Username(db, Username=User.Username)
+    db_user = get_user_by_Username(db, username=User.Username)
     if db_user:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="User already registered")
     return create_user(db, user)
@@ -37,6 +37,12 @@ def change_password(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect current password"
+        )
+
+    if len(new_password) < 8:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="New password must be at least 8 characters long"
         )
 
     change_user_password(db, current_user.UserID, new_password)
