@@ -1,10 +1,11 @@
 import os
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import OAuth2PasswordBearer
 from routers.users import router as user_router
 from routers.products import router as product_router
 from routers.user_carts import router as cart_router
+from utils.auth import get_current_user
+from database.db import get_db, Session
 
 app = FastAPI()
 
